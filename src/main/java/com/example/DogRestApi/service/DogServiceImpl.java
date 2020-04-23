@@ -5,6 +5,7 @@ import com.example.DogRestApi.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DogServiceImpl implements DogService {
 
@@ -21,7 +22,9 @@ public class DogServiceImpl implements DogService {
     }
 
     public String retrieveDogBreedById(Long id){
-        return (String) dogRepository.findBreedById(id);
+        Optional<String> optionalBreed = Optional.ofNullable(dogRepository.findBreedById(id));
+        String breed = optionalBreed.orElseThrow(DogNotFoundException::new);
+        return breed;
     }
 
     public List<String> retrieveDogNames(){
