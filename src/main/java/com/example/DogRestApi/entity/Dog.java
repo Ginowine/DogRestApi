@@ -7,7 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Dog {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
